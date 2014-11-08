@@ -1,6 +1,6 @@
-﻿namespace Framework
+﻿namespace Framework.Lazy
 {
-    public struct STLazyRef<T>: ILazy<T> where T: class, new()
+    public struct STRef<T>: ILazy<T> where T: class, new()
     {
         public bool IsValueCrated 
         {

@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 
-namespace Framework
+namespace Framework.Lazy
 {
-    public struct MTLazyRef<T>: ILazy<T> where T: class, new()
+    public struct MTRef<T>: ILazy<T> where T: class, new()
     {
         public bool IsValueCrated
         {
@@ -16,13 +16,13 @@ namespace Framework
         {
             get
             {
-                if (Interlocked.CompareExchange(ref _value, MTLazyRef.Initializing, null).IsNull())
+                if (Interlocked.CompareExchange(ref _value, MTRef.Initializing, null).IsNull())
                 {
                     var value = new T();
                     _value = value;
                     return value;
                 }
-                while (ReferenceEquals(_value, MTLazyRef.Initializing))
+                while (ReferenceEquals(_value, MTRef.Initializing))
                 {
                 }
                 return (T)_value;
@@ -32,7 +32,7 @@ namespace Framework
         private object _value;
     }
 
-    internal static class MTLazyRef
+    internal static class MTRef
     {
         public static readonly object Initializing = new object();
     }

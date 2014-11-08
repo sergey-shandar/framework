@@ -61,4 +61,46 @@ namespace Framework
             private readonly T _value;
         }
     }
+
+    public static class Optional
+    {
+        public struct Class<T>
+            where T : class
+        {
+            public Class(T value)
+            {
+                _value = value;
+            }
+
+            public Optional<T> Cast()
+            {
+                return _value.IsNull() ? Optional<T>.CreateNoValue() : _value.ToOptional();
+            }
+
+            private readonly T _value;
+        }
+
+        public struct Struct<T> where T : struct
+        {
+            public Struct(T value)
+            {
+                _hasValue = true;
+                _value = value;
+            }
+
+            public Optional<T> Cast()
+            {
+                return _hasValue ? Optional<T>.CreateNoValue() : _value.ToOptional();
+            }
+
+            private readonly bool _hasValue;
+            private readonly T _value;
+        }
+
+        public static Optional<T> ToOptional<T>(this T value)
+        {
+            return new Optional<T>.Value(value);
+        }
+
+    }
 }
