@@ -39,8 +39,8 @@
     <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
     <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
     <CodeContractsInferRequires>True</CodeContractsInferRequires>
-    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
-    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsInferEnsures>True</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>True</CodeContractsInferObjectInvariants>
     <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
     <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
     <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
