@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+	<id>Framework</id>
+    <version>1.0.0.1</version>
+    <authors>Sergey Shandar</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>C# Framework</description>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Framework" targetFramework="net40" />
+    </frameworkAssemblies>
+  </metadata>
+</package>
