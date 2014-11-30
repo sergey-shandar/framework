@@ -79,34 +79,11 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <None Include="AssemblyInfo.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
-    </None>
-    <None Include="Framework.nuspec">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Framework.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Framework.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Framework.nuspec</LastGenOutput>
-    </None>
     <None Include="sergey-shandar.snk" />
-    <None Include="Common.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Common.txt</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AssemblyInfo.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Array.cs" />
     <Compile Include="EnumerableExtensions.cs" />
-    <Compile Include="File.cs" />
     <Compile Include="ILazy.cs" />
     <Compile Include="Lazy\MTRef.cs" />
     <Compile Include="ObjectExtensions.cs" />
@@ -117,13 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Common.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Common.tt</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>
