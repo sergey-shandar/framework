@@ -17,7 +17,12 @@ namespace Framework
 
             public Optional<T> Cast()
             {
-                return _hasValue ? new Optional<T>.NoValue() : _value.ToOptional();
+                return _hasValue ? _value.ToOptional(): new Optional<T>.NoValue();
+            }
+
+            public static implicit operator Struct<T>(T value)
+            {
+                return new Struct<T>(value);
             }
 
             private readonly bool _hasValue;
