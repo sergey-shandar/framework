@@ -89,6 +89,13 @@
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Optional.cs" />
     <Compile Include="Lazy\STRef.cs" />
+    <Compile Include="OptionalExtensions.cs" />
+    <Compile Include="Optional\Class.cs" />
+    <Compile Include="Optional\ISwitch.cs" />
+    <Compile Include="Optional\NoValue.cs" />
+    <Compile Include="Optional\Struct.cs" />
+    <Compile Include="Optional\SwitchSelect.cs" />
+    <Compile Include="Optional\Value.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Void.cs" />
   </ItemGroup>

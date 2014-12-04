@@ -4,9 +4,46 @@ using System.Linq;
 
 namespace Framework
 {
-    public abstract class Optional<T>
+    public abstract partial class Optional
     {
-        public abstract TR Select<TR>(Func<T, TR> hasValue, Func<TR> hasNoValue);
+        public abstract TResult Apply<TResult>(ISwitch<TResult> switch_);
+
+        public abstract bool HasValue { get; }
+
+        internal Optional()
+        {
+        }
+    }
+
+    public abstract partial class Optional<T>: Optional, IEquatable<Optional>
+    {
+        public abstract bool Equals(Optional other);
+
+        public abstract override int GetHashCode();
+
+        public abstract TResult Apply<TResult>(ISwitch<TResult> switch_);
+
+        public override TResult Apply<TResult>(Optional.ISwitch<TResult> switch_)
+        {
+            return switch_.Case(this);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var optional = obj as Optional;
+            return !optional.IsNull() && Equals(optional);
+        }
+
+        public override bool HasValue
+        {
+            get { return Select(value => true, () => false); }
+        }
+
+        public TResult Select<TResult>(
+            Func<T, TResult> hasValue, Func<TResult> hasNoValue)
+        {
+            return Apply(new SwitchSelect<TResult>(hasValue, hasNoValue));
+        }
 
         public void Select(Action<T> hasValue, Action hasNoValue)
         {
@@ -33,74 +70,8 @@ namespace Framework
             return Select(value => value.Enumerate(), Enumerable.Empty<T>);
         }
 
-        public static Optional<T> CreateNoValue()
-        {
-            return new NoValue();
+        private Optional()
+        {            
         }
-
-        public sealed class NoValue: Optional<T>
-        {
-            public override TR Select<TR>(Func<T, TR> hasValue, Func<TR> hasNoValue)
-            {
-                return hasNoValue();
-            }
-        }
-
-        public sealed class Value : Optional<T>
-        {
-            public Value(T value)
-            {
-                _value = value;
-            }
-
-            public override TR Select<TR>(Func<T, TR> hasValue, Func<TR> hasNoValue)
-            {
-                return hasValue(_value);
-            }
-
-            private readonly T _value;
-        }
-    }
-
-    public static class Optional
-    {
-        public struct Class<T>
-            where T : class
-        {
-            public Class(T value)
-            {
-                _value = value;
-            }
-
-            public Optional<T> Cast()
-            {
-                return _value.IsNull() ? Optional<T>.CreateNoValue() : _value.ToOptional();
-            }
-
-            private readonly T _value;
-        }
-
-        public struct Struct<T> where T : struct
-        {
-            public Struct(T value)
-            {
-                _hasValue = true;
-                _value = value;
-            }
-
-            public Optional<T> Cast()
-            {
-                return _hasValue ? Optional<T>.CreateNoValue() : _value.ToOptional();
-            }
-
-            private readonly bool _hasValue;
-            private readonly T _value;
-        }
-
-        public static Optional<T> ToOptional<T>(this T value)
-        {
-            return new Optional<T>.Value(value);
-        }
-
     }
 }
