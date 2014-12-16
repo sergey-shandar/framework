@@ -79,6 +79,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="Policy\Numeric.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Numeric.cs</LastGenOutput>
+    </None>
     <None Include="sergey-shandar.snk" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +90,12 @@
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="ILazy.cs" />
     <Compile Include="Lazy\MTRef.cs" />
+    <Compile Include="Policy\INumeric.cs" />
+    <Compile Include="Policy\Numeric.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Numeric.tt</DependentUpon>
+    </Compile>
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Optional.cs" />
     <Compile Include="Lazy\STRef.cs" />
