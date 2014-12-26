@@ -156,3 +156,6 @@ $RECYCLE.BIN/
 .DS_Store
 *.snk
 Framework/packages/
+/Framework.G1/Framework.G1/_CreateNewNuGetPackage/DoNotModify
+/Framework.G1/packages
+/Framework.G1/Framework.G1/_CreateNewNuGetPackage/RunMeToUploadNuGetPackage.cmd

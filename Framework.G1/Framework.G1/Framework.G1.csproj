@@ -133,7 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Array.cs" />
-    <Compile Include="Base128.cs" />
+    <Compile Include="ICompression.cs" />
+    <Compile Include="Leb128\V1.cs" />
+    <Compile Include="Leb128\V2.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="ILazy.cs" />
     <Compile Include="Lazy\MTRef.cs" />
@@ -156,6 +158,7 @@
   <ItemGroup>
     <None Include="_CreateNewNuGetPackage\DoNotModify\NuGet.exe" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
