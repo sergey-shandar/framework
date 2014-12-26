@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Array.cs" />
+    <Compile Include="Base128.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="ILazy.cs" />
     <Compile Include="Lazy\MTRef.cs" />
