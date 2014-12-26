@@ -9,7 +9,7 @@ namespace Framework.G1.Leb128
     {
         public IEnumerable<byte> Encode(ulong value)
         {
-            while (value >= V1.Flag)
+            while (V1.Flag <= value)
             {
                 yield return (byte)(V1.Flag | value);
                 value = (value >> V1.Offset) - 1;

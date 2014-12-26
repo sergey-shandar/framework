@@ -7,7 +7,7 @@ namespace Framework.G1.Leb128
     {
         public IEnumerable<byte> Encode(ulong value)
         {
-            while (value >= Flag)
+            while (Flag <= value)
             {
                 yield return (byte)(Flag | value);
                 value >>= Offset;
@@ -18,20 +18,19 @@ namespace Framework.G1.Leb128
         public ulong Decode(Func<byte> getNextByte)
         {
             var result = 0ul;
-            var i = 0;
+            var c = 1ul;
             while (true)
             {
-                var b = (ulong)getNextByte();
-                result |= ((b & Mask) << i);
+                var b = getNextByte();
+                result += b * c;
                 if (b < Flag)
                 {
                     return result;
                 }
-                i += Offset;
+                c *= Flag;
+                result -= c;
             }
         }
-
-        private const byte Mask = 0x7F;
 
         internal const int Offset = 7;
 
