@@ -4,7 +4,7 @@ namespace Framework.G1
 {
     partial class Optional<T>
     {
-        public sealed class NoValue : Optional<T>
+        public sealed new class Absent : Optional<T>
         {
             public override string ToString()
             {

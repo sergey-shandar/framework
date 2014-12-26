@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Framework.G1.Leb128
 {
+    /// <summary>
+    /// Saves one byte in about 0.9% cases.
+    /// </summary>
     public sealed class V2: ICompression<ulong>
     {
         public IEnumerable<byte> Encode(ulong value)

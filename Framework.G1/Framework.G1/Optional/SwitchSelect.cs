@@ -15,7 +15,7 @@ namespace Framework.G1
                 _hasNoValue = hasNoValue;
             }
 
-            public TResult Case(NoValue noValue)
+            public TResult Case(Absent absent)
             {
                 return _hasNoValue();
             }

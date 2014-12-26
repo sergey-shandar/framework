@@ -9,38 +9,38 @@ namespace Test
     public class OptionalTest
     {
         [TestMethod]
-        public void SelectTestMethod()
+        public void SelectTest()
         {
             "hello".ToOptional().Select(s => true, () => false).Should().BeTrue();
-            new Optional<string>.NoValue().Select(s => true, () => false).Should().BeFalse();
+            new Optional<string>.Absent().Select(s => true, () => false).Should().BeFalse();
         }
 
         [TestMethod]
-        public void EqualsTestMethod()
+        public void EqualsTest()
         {
             "hello".ToOptional().Equals(((object)"hello").ToOptional()).Should().BeTrue();
             "hello".ToOptional().Equals("hello").Should().BeFalse();
             "hello".ToOptional().Equals("three".ToOptional()).Should().BeFalse();
             3.ToOptional().Equals(((object)3).ToOptional()).Should().BeTrue();
-            new Optional<int>.NoValue().Equals(new Optional<string>.NoValue()).Should().BeTrue();
+            new Optional<int>.Absent().Equals(new Optional<string>.Absent()).Should().BeTrue();
         }
 
         [TestMethod]
-        public void HasValueTestMethod()
+        public void HasValueTest()
         {
             ((Optional) ("hello".ToOptional())).HasValue.Should().BeTrue();
-            ((Optional) (new Optional<IEnumerable>.NoValue())).HasValue.Should().BeFalse();
+            ((Optional) (new Optional<IEnumerable>.Absent())).HasValue.Should().BeFalse();
         }
 
         [TestMethod]
-        public void GetHashCodeTestMethod()
+        public void GetHashCodeTest()
         {
             "hello".ToOptional().GetHashCode().Should().Be("hello".GetHashCode());
-            new Optional<double>.NoValue().GetHashCode().Should().Be(0);
+            new Optional<double>.Absent().GetHashCode().Should().Be(0);
         }
 
         [TestMethod]
-        public void ClassTestMethod()
+        public void ClassTest()
         {
             OptionalClass<string>().Cast().HasValue.Should().BeFalse();
             OptionalClass<string>("hello").Cast().HasValue.Should().BeTrue();
@@ -54,10 +54,10 @@ namespace Test
         }
 
         [TestMethod]
-        public void StructTestMethod()
+        public void StructTest()
         {
             OptionalStruct<int>().Cast().HasValue.Should().BeFalse();
-            OptionalStruct<int>(34).Cast().HasValue.Should().BeTrue();
+            OptionalStruct<int>(37).Cast().HasValue.Should().BeTrue();
             OptionalStruct<int>(57).Cast().Select(value => value == 57, () => false).Should().BeTrue();
         }
 

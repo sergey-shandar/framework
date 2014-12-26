@@ -12,7 +12,7 @@ namespace Test
     public class EnumerableExtensionsTest
     {
         [TestMethod]
-        public void EnumerateTestMethod()
+        public void EnumerateTest()
         {
             5.Enumerate().Count().Should().Be(1);
             "hello".Enumerate().First().Should().Be("hello");

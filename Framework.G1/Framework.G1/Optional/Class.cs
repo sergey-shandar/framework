@@ -11,7 +11,9 @@
 
             public Optional<T> Cast()
             {
-                return _value.IsNull() ? new Optional<T>.NoValue() : _value.ToOptional();
+                return _value.IsNull() ? 
+                    new Optional<T>.Absent() : 
+                    (Optional<T>)_value.ToOptional();
             }
 
             public static implicit operator Class<T>(T value)

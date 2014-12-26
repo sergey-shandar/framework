@@ -9,7 +9,7 @@ namespace Test
     public class ObjectExtensionsTest
     {
         [TestMethod]
-        public void IsNullTestMethod()
+        public void IsNullTest()
         {
             ((object)null).IsNull().Should().BeTrue();
             "hello".IsNull().Should().BeFalse();

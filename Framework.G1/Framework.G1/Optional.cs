@@ -60,7 +60,7 @@ namespace Framework.G1
                 });
         }
 
-        public void Select(Action<T> hasValue)
+        public void ForEach(Action<T> hasValue)
         {
             Select(hasValue, () => {});
         }

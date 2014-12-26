@@ -12,7 +12,7 @@
     {
         public new interface ISwitch<out TResult>
         {
-            TResult Case(NoValue noValue);
+            TResult Case(Absent absent);
             TResult Case(Value value);
         }
     }

@@ -139,13 +139,14 @@
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="ILazy.cs" />
     <Compile Include="Lazy\MTRef.cs" />
+    <Compile Include="ZigZag.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Optional.cs" />
     <Compile Include="Lazy\STRef.cs" />
     <Compile Include="OptionalExtensions.cs" />
     <Compile Include="Optional\Class.cs" />
     <Compile Include="Optional\ISwitch.cs" />
-    <Compile Include="Optional\NoValue.cs" />
+    <Compile Include="Optional\Absent.cs" />
     <Compile Include="Optional\Struct.cs" />
     <Compile Include="Optional\SwitchSelect.cs" />
     <Compile Include="Optional\Value.cs" />

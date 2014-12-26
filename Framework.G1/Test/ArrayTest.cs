@@ -9,7 +9,7 @@ namespace Test
     public class ArrayTest
     {
         [TestMethod]
-        public void EmptyTestMethod()
+        public void EmptyTest()
         {
             Array<string>.Empty.Length.Should().Be(0);
         }

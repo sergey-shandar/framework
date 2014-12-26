@@ -9,13 +9,13 @@ namespace Test
     public class LazyTest
     {
         [TestMethod]
-        public void STRefTestMethod()
+        public void STRefTest()
         {
             Test<STRef<My>>();
         }
 
         [TestMethod]
-        public void MTRefTestMethod()
+        public void MTRefTest()
         {
             Test<MTRef<My>>();
         }
