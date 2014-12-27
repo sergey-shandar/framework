@@ -45,6 +45,11 @@ namespace Framework.G1
             return Apply(new SwitchSelect<TResult>(hasValue, hasNoValue));
         }
 
+        public TResult Select<TResult>(Func<T, TResult> hasValue, TResult defaultResult)
+        {
+            return Select(hasValue, () => defaultResult);
+        }
+
         public void Select(Action<T> hasValue, Action hasNoValue)
         {
             Select(
@@ -63,6 +68,21 @@ namespace Framework.G1
         public void ForEach(Action<T> hasValue)
         {
             Select(hasValue, () => {});
+        }
+
+        public T Default(Func<T> create)
+        {
+            return Select(value => value, create);
+        }
+
+        public T Default(T value)
+        {
+            return Default(() => value);
+        }
+
+        public bool ValueEqual(T value)
+        {
+            return Select(v => v.Equals(value), false);
         }
 
         public IEnumerable<T> ToEnumerable()

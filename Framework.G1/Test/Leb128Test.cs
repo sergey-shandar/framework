@@ -13,7 +13,7 @@ namespace Test
         [TestMethod]
         public void V1Test()
         {
-            var c = new V1();
+            var c = V1.Value;
             //
             Check(c, 0ul, 0);
             Check(c, 1ul, 1);
@@ -42,7 +42,7 @@ namespace Test
         [TestMethod]
         public void V2Test()
         {
-            var c = new V2();
+            var c = V2.Value;
             //
             Check(c, 0ul, 0);
             Check(c, 1ul, 1);

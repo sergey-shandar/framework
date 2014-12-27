@@ -139,6 +139,7 @@
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="ILazy.cs" />
     <Compile Include="Lazy\MTRef.cs" />
+    <Compile Include="UpCastExtensions.cs" />
     <Compile Include="ZigZag.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Optional.cs" />

@@ -5,6 +5,8 @@ namespace Framework.G1.Leb128
 {
     public sealed class V1: ICompression<ulong>
     {
+        public static readonly V1 Value = new V1();
+
         public IEnumerable<byte> Encode(ulong value)
         {
             while (Flag <= value)
@@ -30,6 +32,10 @@ namespace Framework.G1.Leb128
                 c *= Flag;
                 result -= c;
             }
+        }
+
+        private V1()
+        {
         }
 
         internal const int Offset = 7;

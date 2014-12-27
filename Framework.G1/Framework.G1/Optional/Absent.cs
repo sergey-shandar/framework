@@ -4,8 +4,10 @@ namespace Framework.G1
 {
     partial class Optional<T>
     {
-        public sealed new class Absent : Optional<T>
+        public sealed class Absent : Optional<T>
         {
+            public static readonly Absent Value = new Absent();
+
             public override string ToString()
             {
                 return "{}";
@@ -24,6 +26,10 @@ namespace Framework.G1
             public override TResult Apply<TResult>(ISwitch<TResult> switch_)
             {
                 return switch_.Case(this);
+            }
+
+            private Absent()
+            {                
             }
         }
     }

@@ -12,7 +12,7 @@ namespace Test
         public void SelectTest()
         {
             "hello".ToOptional().Select(s => true, () => false).Should().BeTrue();
-            new Optional<string>.Absent().Select(s => true, () => false).Should().BeFalse();
+            Optional<string>.Absent.Value.Select(s => true, () => false).Should().BeFalse();
         }
 
         [TestMethod]
@@ -22,21 +22,20 @@ namespace Test
             "hello".ToOptional().Equals("hello").Should().BeFalse();
             "hello".ToOptional().Equals("three".ToOptional()).Should().BeFalse();
             3.ToOptional().Equals(((object)3).ToOptional()).Should().BeTrue();
-            new Optional<int>.Absent().Equals(new Optional<string>.Absent()).Should().BeTrue();
         }
 
         [TestMethod]
         public void HasValueTest()
         {
             ((Optional) ("hello".ToOptional())).HasValue.Should().BeTrue();
-            ((Optional) (new Optional<IEnumerable>.Absent())).HasValue.Should().BeFalse();
+            ((Optional) (Optional<IEnumerable>.Absent.Value)).HasValue.Should().BeFalse();
         }
 
         [TestMethod]
         public void GetHashCodeTest()
         {
             "hello".ToOptional().GetHashCode().Should().Be("hello".GetHashCode());
-            new Optional<double>.Absent().GetHashCode().Should().Be(0);
+            Optional<double>.Absent.Value.GetHashCode().Should().Be(0);
         }
 
         [TestMethod]

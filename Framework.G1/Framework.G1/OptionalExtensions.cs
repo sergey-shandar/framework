@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Framework.G1
@@ -32,6 +33,18 @@ namespace Framework.G1
             this Optional.Class<IEnumerable<T>> optional)
         {
             return optional.Cast().SelectMany();
+        }
+
+        public static Optional<T> ThenCreateOptional<T>(this bool condition, Func<T> create)
+        {
+            return condition ? 
+                create().ToOptional().UpCast<Optional<T>>() :
+                Optional<T>.Absent.Value;
+        }
+
+        public static Optional<T> ThenCreateOptional<T>(this bool condition, T value)
+        {
+            return condition.ThenCreateOptional(() => value);
         }
     }
 }

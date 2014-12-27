@@ -17,9 +17,7 @@ namespace Framework.G1
 
             public Optional<T> Cast()
             {
-                return _hasValue ? 
-                    (Optional<T>)_value.ToOptional(): 
-                    new Optional<T>.Absent();
+                return _hasValue.ThenCreateOptional(_value);
             }
 
             public static implicit operator Struct<T>(T value)

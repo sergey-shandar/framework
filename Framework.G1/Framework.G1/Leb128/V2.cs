@@ -8,6 +8,8 @@ namespace Framework.G1.Leb128
     /// </summary>
     public sealed class V2: ICompression<ulong>
     {
+        public static readonly V2 Value = new V2();
+
         public IEnumerable<byte> Encode(ulong value)
         {
             while (V1.Flag <= value)
@@ -33,6 +35,10 @@ namespace Framework.G1.Leb128
                 c *= V1.Flag;
             }
             return result;
+        }
+
+        private V2()
+        {
         }
     }
 }
