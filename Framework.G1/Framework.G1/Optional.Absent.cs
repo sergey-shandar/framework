@@ -4,9 +4,12 @@ namespace Framework.G1
 {
     partial class Optional<T>
     {
+        /// <summary>
+        /// Any two Absent instances are equal, even for differnt T.
+        /// </summary>
         public sealed class Absent : Optional<T>
         {
-            public static readonly Absent Value = new Absent();
+            public new static readonly Absent Value = new Absent();
 
             public override string ToString()
             {
@@ -23,7 +26,7 @@ namespace Framework.G1
                 return !other.HasValue;
             }
 
-            public override TResult Apply<TResult>(ISwitch<TResult> switch_)
+            public override TResult Apply<TResult>(Switch<TResult> switch_)
             {
                 return switch_.Case(this);
             }

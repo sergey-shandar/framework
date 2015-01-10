@@ -5,22 +5,24 @@ using System.Text;
 
 namespace Framework.G1
 {
-    partial class Optional<T>
+    static partial class OptionalExtensions
     {
-        private sealed class SwitchSelect<TResult>: ISwitch<TResult>
+        private sealed class SwitchSelect<T, TResult> :
+            Optional<T>.Switch<TResult>
         {
-            public SwitchSelect(Func<T, TResult> hasValue, Func<TResult> hasNoValue)
+            public SwitchSelect(
+                Func<T, TResult> hasValue, Func<TResult> hasNoValue)
             {
                 _hasValue = hasValue;
                 _hasNoValue = hasNoValue;
             }
 
-            public TResult Case(Absent absent)
+            public override TResult Case(Optional<T>.Absent absent)
             {
                 return _hasNoValue();
             }
 
-            public TResult Case(Value value)
+            public override TResult Case(Optional<T>.Value value)
             {
                 return _hasValue(value.V);
             }

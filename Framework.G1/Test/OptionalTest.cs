@@ -22,6 +22,7 @@ namespace Test
             "hello".ToOptional().Equals("hello").Should().BeFalse();
             "hello".ToOptional().Equals("three".ToOptional()).Should().BeFalse();
             3.ToOptional().Equals(((object)3).ToOptional()).Should().BeTrue();
+            Optional<string>.Absent.Value.Should().Be(Optional<int>.Absent.Value);
         }
 
         [TestMethod]

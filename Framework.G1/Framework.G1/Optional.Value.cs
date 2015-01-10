@@ -6,7 +6,7 @@ namespace Framework.G1
     {
         public sealed class Value : Optional<T>
         {
-            public override TResult Apply<TResult>(ISwitch<TResult> switch_)
+            public override TResult Apply<TResult>(Switch<TResult> switch_)
             {
                 return switch_.Case(this);
             }
@@ -33,16 +33,16 @@ namespace Framework.G1
                 return other.Apply(new EqualsSwitch(V));
             }
 
-            private sealed class EqualsSwitch : Optional.ISwitch<bool>
+            private sealed class EqualsSwitch : Optional.Switch<bool>
             {
                 public EqualsSwitch(T value)
                 {
                     _value = value;
                 }
 
-                public bool Case<TOther>(Optional<TOther> optional)
+                public override bool Case<TOther>(Optional<TOther> optional)
                 {
-                    return optional.Select(value => _value.Equals(value), () => false);
+                    return optional.Select(value => _value.Equals(value), false);
                 }
 
                 private readonly T _value;

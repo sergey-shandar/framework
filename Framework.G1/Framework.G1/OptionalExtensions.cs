@@ -4,47 +4,72 @@ using System.Linq;
 
 namespace Framework.G1
 {
-    public static class OptionalExtensions
+    public static partial class OptionalExtensions
     {
-        public static Optional<T>.Value ToOptional<T>(this T value)
-        {
-            return new Optional<T>.Value(value);
-        }
-
-        public static Optional.Class<T> ToOptionalClass<T>(this T value)
-            where T : class
-        {
-            return new Optional.Class<T>(value);
-        }
-
-        public static Optional.Struct<T> ToOptionalStruct<T>(this T value)
-            where T: struct
-        {
-            return new Optional.Struct<T>(value);
-        }
-
         public static IEnumerable<T> SelectMany<T>(
             this Optional<IEnumerable<T>> optional)
         {
             return optional.Select(v => v, Enumerable.Empty<T>);
         }
 
-        public static IEnumerable<T> SelectMany<T>(
-            this Optional.Class<IEnumerable<T>> optional)
+        public static TResult Select<T, TResult>(
+            this Optional<T> optional,
+            Func<T, TResult> hasValue,
+            Func<TResult> hasNoValue)
         {
-            return optional.Cast().SelectMany();
+            return optional.Apply(
+                new SwitchSelect<T, TResult>(hasValue, hasNoValue));
         }
 
-        public static Optional<T> ThenCreateOptional<T>(this bool condition, Func<T> create)
+        public static TResult Select<T, TResult>(
+            this Optional<T> optional,
+            Func<T, TResult> hasValue,
+            TResult defaultResult)
         {
-            return condition ? 
-                create().ToOptional().UpCast<Optional<T>>() :
-                Optional<T>.Absent.Value;
+            return optional.Select(hasValue, () => defaultResult);
         }
 
-        public static Optional<T> ThenCreateOptional<T>(this bool condition, T value)
+        public static void Select<T>(
+            this Optional<T> optional, Action<T> hasValue, Action hasNoValue)
         {
-            return condition.ThenCreateOptional(() => value);
+            optional.Select(
+                value =>
+                {
+                    hasValue(value);
+                    return new Void();
+                },
+                () =>
+                {
+                    hasNoValue();
+                    return new Void();
+                });
+        }
+
+        public static void ForEach<T>(
+            this Optional<T> optional, Action<T> hasValue)
+        {
+            optional.Select(hasValue, () => { });
+        }
+
+        public static T Default<T>(this Optional<T> optional, Func<T> create)
+        {
+            return optional.Select(value => value, create);
+        }
+
+        public static T Default<T>(this Optional<T> optional, T value)
+        {
+            return optional.Default(() => value);
+        }
+
+        public static bool ValueEqual<T>(this Optional<T> optional, T value)
+        {
+            return optional.Select(v => v.Equals(value), false);
+        }
+
+        public static IEnumerable<T> ToEnumerable<T>(this Optional<T> optional)
+        {
+            return optional.Select(
+                value => value.Enumerate(), Enumerable.Empty<T>);
         }
     }
 }
