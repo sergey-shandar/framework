@@ -28,8 +28,8 @@ namespace Test
         [TestMethod]
         public void HasValueTest()
         {
-            ((Optional) ("hello".ToOptional())).HasValue.Should().BeTrue();
-            ((Optional) (Optional<IEnumerable>.Absent.Value)).HasValue.Should().BeFalse();
+            "hello".ToOptional().HasValue.Should().BeTrue();
+            Optional<IEnumerable>.Absent.Value.HasValue.Should().BeFalse();
         }
 
         [TestMethod]
