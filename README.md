@@ -1,4 +1,4 @@
-Portable .NET Framework 
+﻿Portable .NET Framework 
 
 # For Developers
 
@@ -25,11 +25,13 @@ Principals:
 - Using Immutable Structires
 - Using Optional
 
-  static int ApiMain(Options options)
-  {
-  }
 
-  static int main(string args[])
-  {
-      return CommandLineParser.Run(args, ApiMain);
-  } 
+    static int ApiMain(Options options)
+    {
+        //
+    }
+
+    static int main(string args[])
+    {
+        return CommandLineParser.Run(args, ApiMain);
+    } 
