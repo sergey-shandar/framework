@@ -71,5 +71,11 @@ namespace Framework.G1
             return optional.Select(
                 value => value.Enumerate(), Enumerable.Empty<T>);
         }
+
+        public static IEnumerable<T> SelectOnlyValues<T>(
+            this IEnumerable<Optional<T>> source)
+        {
+            return source.SelectMany(o => o.ToEnumerable());
+        }
     }
 }
