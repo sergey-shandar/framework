@@ -39,16 +39,11 @@ Principals:
 - using commands
 
 
-    interface ICommands
+    sealed class Commands
     {
-        int Download(string file, Optional<int> x);
-        int Upload(string file);
+        int Download(string file, Optional<int> x) { ... }
+        int Upload(string file) { ... }
     } 
-    
-    sealed class Commands: ICommand
-    {
-        // ...
-    }
     
     static int main(string args[])
     {
