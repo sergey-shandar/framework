@@ -34,4 +34,23 @@ Principals:
     static int main(string args[])
     {
         return CommandLineParser.Run(args, ApiMain);
+    }
+    
+- using commands
+
+
+    interface ICommands
+    {
+        int Download(string file, Optional<int> x);
+        int Upload(string file);
     } 
+    
+    sealed class Commands: ICommand
+    {
+        // ...
+    }
+    
+    static int main(string args[])
+    {
+        return Cli.Run(new Commands(), args);
+    }
