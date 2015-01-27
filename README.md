@@ -67,3 +67,9 @@ Principals:
         return Cli.Run<Commands>(args);
     }
     
+### Settings
+
+- case-sensetivity.
+- if case-sensetive, should we transform a function name to lower case?
+
+    
