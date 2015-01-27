@@ -59,6 +59,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ArrayTest.cs" />
+    <Compile Include="CliTest.cs" />
     <Compile Include="EnumerableExtensionsTest.cs" />
     <Compile Include="LazyTest.cs" />
     <Compile Include="ObjectExtensionsTest.cs" />

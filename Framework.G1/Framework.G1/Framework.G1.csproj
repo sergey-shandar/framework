@@ -125,6 +125,7 @@
   <ItemGroup>
     <Compile Include="Array.cs" />
     <Compile Include="Cli.cs" />
+    <Compile Include="DictionaryExtensions.cs" />
     <Compile Include="ICompression.cs" />
     <Compile Include="Leb128\V1.cs" />
     <Compile Include="Leb128\V2.cs" />

@@ -1,21 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
+using System.Reflection;
 
 namespace Framework.G1
 {
     public static class Cli
     {
-        public static int Run<T>(string[] args)
+        public const int Ok = 0;
+        public const int Error = -1;
+
+        public static int Run<T>(TextWriter writer, string[] args)
         {
-            var type = typeof(T);
-            var methods = type.GetMethods();
-            foreach(var method in methods)
+            var dictionary = typeof (T)
+                .GetMethods()
+                .Where(m => m.Attributes.HasFlag(
+                    MethodAttributes.Public | MethodAttributes.Static))
+                .ToDictionary(m => m.Name.ToLower());
+
+            if (args.Length == 0)
             {
-                
+                foreach (var m in dictionary)
+                {
+                    writer.WriteLine(m.Key);
+                }
+                return Ok;
             }
-            return 0;
+
+            var command = args[0];
+
+            try
+            {
+                var c = dictionary
+                    .Get(args[0])
+                    .Default(() =>
+                    {
+                        throw new Exception("unknown command: " + command); 
+                    });
+            }
+            catch (Exception e)
+            {
+                writer.WriteLine("Error: " + e.Message);
+                return Error;
+            }
+            return Ok;
         }
     }
 }
