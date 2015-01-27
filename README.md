@@ -49,3 +49,21 @@ Principals:
     {
         return Cli.Run(new Commands(), args);
     }
+    
+- using static classes
+
+
+    static class Commands
+    {
+        [Help("Download file.")]
+        static int Download([Help("A file name.")] string file, [Help("Version)] Optional<int> version) { ... }
+        
+        [Help("Upload file.")]
+        static int Upload([Help("A file name.")]string file) { ... }
+    } 
+    
+    static int main(string args[])
+    {
+        return Cli.Run<Commands>(args);
+    }
+    
