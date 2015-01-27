@@ -71,5 +71,8 @@ Principals:
 
 - case-sensetivity.
 - if case-sensetive, should we transform a function name to lower case?
-
+- non-latin symbols in function/parameter names.
+- argument start options "-", "--", "/".
+- argument name/value separator " ", ":", "=".
+- argument values with no name.
     
