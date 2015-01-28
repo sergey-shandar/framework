@@ -20,11 +20,13 @@ namespace Framework.G1
 
             if (args.Length == 0)
             {
+                // print help.
+                // TODO: it should also print an error.
                 foreach (var m in dictionary)
                 {
                     writer.WriteLine(m.Key);
                 }
-                return Ok;
+                return Error;
             }
 
             var command = args[0];
@@ -37,6 +39,9 @@ namespace Framework.G1
                     {
                         throw new Exception("unknown command: " + command); 
                     });
+                if (args[1].StartsWith('-'))
+                {
+                }
             }
             catch (Exception e)
             {
@@ -44,6 +49,27 @@ namespace Framework.G1
                 return Error;
             }
             return Ok;
+        }
+
+        public static void Parse(
+            string parameter, 
+            Action<string, string> parameterAction, 
+            Action<string> multiparameterAction)
+        {
+            if (!parameter.StartsWith('-'))
+            {
+                throw new Exception("unrecognized parameter: " + parameter);
+            }
+            if (!parameter.StartsWith('-', 1))
+            {
+                multiparameterAction(parameter.Substring(1));
+            }
+            else
+            {
+                var nameValue = parameter.Substring(2);
+                var split = nameValue.Split(nameValue.IndexOf('='));
+                parameterAction(split.Before, split.After);
+            }
         }
     }
 }
