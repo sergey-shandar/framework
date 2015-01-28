@@ -17,9 +17,17 @@ namespace Framework.G1
                 : new Split(s.Substring(0, index), s.Substring(index + 1));
         }
 
+        /// <summary>
+        /// TODO: check wich version is faster, this one or s.Cast[char]()
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static IEnumerable<char> AsEnumerable(this string s)
         {
-            return s.Cast<char>();
+            for (var i = 0; i < s.Length; ++i)
+            {
+                yield return s[i];
+            }
         }
     }
 }
