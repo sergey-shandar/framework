@@ -75,4 +75,16 @@ Principals:
 - argument start options "-", "--", "/".
 - argument name/value separator " ", ":", "=".
 - argument values with no name.
-    
+
+### Accepted Types
+
+- one value
+    - string
+    - char
+    - byte, sbyte, ... , ulong, long
+    - float,double
+    - decimal
+    - enum
+    - DateTime, TimeSpan
+- multiple values
+    - IEnumerable
