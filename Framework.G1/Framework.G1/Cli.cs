@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -12,17 +13,50 @@ namespace Framework.G1
 
         public static int Run<T>(TextWriter writer, string[] args)
         {
-            var dictionary = typeof (T)
+            var commandMap = typeof (T)
                 .GetMethods()
                 .Where(m => m.Attributes.HasFlag(
                     MethodAttributes.Public | MethodAttributes.Static))
                 .ToDictionary(m => m.Name.ToLower());
 
+            var nonameList = new List<string>();
+
+            var nameMap = new Dictionary<string, List<string>>();
+
+            var symbolMap = new Dictionary<char, List<string>>();
+
+            var list = nonameList;
+
+            foreach (var arg in args)
+            {
+                // -?
+                if (arg.StartsWith('-'))
+                {
+                    // --
+                    if (arg.StartsWith('-', 1))
+                    {
+                        list = nameMap.GetOrNew(arg.Substring(2));
+                    }
+                    // -
+                    else
+                    {
+                        foreach (var c in arg)
+                        {
+                            list = symbolMap.GetOrNew(c);
+                        }                       
+                    }
+                }
+                else
+                {
+                    list.Add(arg);
+                }
+            }
+
             if (args.Length == 0)
             {
                 // print help.
                 // TODO: it should also print an error.
-                foreach (var m in dictionary)
+                foreach (var m in commandMap)
                 {
                     writer.WriteLine(m.Key);
                 }
@@ -33,7 +67,7 @@ namespace Framework.G1
 
             try
             {
-                var c = dictionary
+                var c = commandMap
                     .Get(args[0])
                     .Default(() =>
                     {
