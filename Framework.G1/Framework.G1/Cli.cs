@@ -40,7 +40,7 @@ namespace Framework.G1
                     // -
                     else
                     {
-                        foreach (var c in arg)
+                        foreach (var c in arg.AsEnumerable().Skip(1))
                         {
                             list = symbolMap.GetOrNew(c);
                         }                       
