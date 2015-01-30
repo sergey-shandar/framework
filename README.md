@@ -88,3 +88,14 @@ Principals:
     - DateTime, TimeSpan
 - multiple values
     - IEnumerable
+    
+### Optional Types
+
+- with default value:
+    - string value = "something"
+    - int value = 54
+- using optional types:
+    - Optional.ByRef<string> value = default(Optional.ByRef<string>)
+    - Optional.ByValue<int> value = default(Optional.ByValue<int>)
+    
+- collections and booleans can't have optional types or default values. 
