@@ -52,7 +52,7 @@ namespace Framework.G1
                 }
             }
 
-            if (args.Length == 0)
+            if (nonameList.Count == 0)
             {
                 // print help.
                 // TODO: it should also print an error.
@@ -63,7 +63,7 @@ namespace Framework.G1
                 return Error;
             }
 
-            var command = args[0];
+            var command = nonameList[0];
 
             try
             {
