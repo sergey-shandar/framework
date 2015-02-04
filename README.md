@@ -99,3 +99,20 @@ Principals:
     - Optional.ByValue<int> value = default(Optional.ByValue<int>)
     
 - collections and booleans can't have optional types or default values. 
+
+## JSON Parser
+
+### Untyped
+
+    JS.Object["name", JS.Array[5][6][7]["string"]]["Date", 5] => { "name": [ 5, 6, 7, "string"], "Date": 5 }
+    
+    JS
+        .Object
+        .p("name", JS.Array.i(5).i(6).i(7).i("string"))
+        .p("Date", 5)
+        
+    JS
+        .Object
+        .p("name", JS.Array(5, 6, 7, "string"))
+        .p("Date", 5)
+    
