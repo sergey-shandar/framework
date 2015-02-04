@@ -110,7 +110,8 @@ Principals:
         .Object
         .p("name", JS.Array.i(5).i(6).i(7).i("string"))
         .p("Date", 5)
-        
+    
+    // with implicit type conversion to JS.ValueType    
     JS
         .Object
         .p("name", JS.Array(5, 6, 7, "string"))
