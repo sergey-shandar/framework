@@ -117,3 +117,12 @@ Principals:
         .p("name", JS.Array(5, 6, 7, "string"))
         .p("Date", 5)
     
+# Immutable Containers
+
+## Sequence
+
+```C#
+Sequence<T> { readonly Optional<Node<T>> next; } 
+Node<T> { readonly T Value; readonly Optional<Node<T>> next; }
+``` 
+    
