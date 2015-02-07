@@ -88,3 +88,41 @@ Principals:
     - DateTime, TimeSpan
 - multiple values
     - IEnumerable
+    
+### Optional Types
+
+- with default value:
+    - string value = "something"
+    - int value = 54
+- using optional types:
+    - Optional.ByRef<string> value = default(Optional.ByRef<string>)
+    - Optional.ByValue<int> value = default(Optional.ByValue<int>)
+    
+- collections and booleans can't have optional types or default values. 
+
+## JSON Parser
+
+### Untyped
+
+    JS.Object["name", JS.Array[5][6][7]["string"]]["Date", 5] => { "name": [ 5, 6, 7, "string"], "Date": 5 }
+    
+    JS
+        .Object
+        .p("name", JS.Array.i(5).i(6).i(7).i("string"))
+        .p("Date", 5)
+    
+    // with implicit type conversion to JS.ValueType    
+    JS
+        .Object
+        .p("name", JS.Array(5, 6, 7, "string"))
+        .p("Date", 5)
+    
+# Immutable Containers
+
+## Sequence
+
+```C#
+Sequence<T> { readonly Optional<Node<T>> next; } 
+Node<T> { readonly T Value; readonly Optional<Node<T>> next; }
+``` 
+    
