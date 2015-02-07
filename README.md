@@ -121,7 +121,7 @@ JS
     
 # Immutable Containers
 
-## Sequence
+## Stack
 
 ```C#
 class Stack<T> { readonly Optional<Node<T>> next; } 
