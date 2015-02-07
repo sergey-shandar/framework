@@ -68,14 +68,11 @@ namespace Framework.G1
             try
             {
                 var c = commandMap
-                    .Get(args[0])
+                    .Get(command)
                     .Default(() =>
                     {
                         throw new Exception("unknown command: " + command); 
                     });
-                if (args[1].StartsWith('-'))
-                {
-                }
             }
             catch (Exception e)
             {
