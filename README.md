@@ -134,7 +134,7 @@ public abstract class Stack<T>
     
     public abstract TR Apply<TR>(Switch<TR> s);
     
-    public sealed class Empty
+    public sealed class Empty: Stack<T>
     {
         public override TR Apply<TR>(Switch<TR> s)
         {
@@ -142,7 +142,7 @@ public abstract class Stack<T>
         }
     }
     
-    public sealed class One
+    public sealed class One: Stack<T>
     {
         public readonly T Value;
         public readonly Stack<T> Next;
