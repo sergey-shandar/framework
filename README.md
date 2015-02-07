@@ -124,7 +124,7 @@ JS
 ## Stack
 
 ```C#
-abstract class Stack<T> 
+public abstract class Stack<T> 
 {
     public abstract class Switch<TR>
     {
