@@ -68,7 +68,7 @@ namespace Framework.G1
             try
             {
                 var c = commandMap
-                    .Get(args[0])
+                    .Get(command)
                     .Default(() =>
                     {
                         throw new Exception("unknown command: " + command); 
