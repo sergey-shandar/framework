@@ -124,7 +124,44 @@ JS
 ## Stack
 
 ```C#
-class Stack<T> { readonly Optional<Node<T>> next; } 
-class Node<T> { readonly T Value; readonly Optional<Node<T>> next; }
+abstract class Stack<T> 
+{
+    public abstract class Switch<TR>
+    {
+        public abstract TR Case(Empty empty);
+        public abstract TR Case(One one);
+    }
+    
+    public abstract TR Apply<TR>(Switch<TR> s);
+    
+    public sealed class Empty
+    {
+        public override TR Apply<TR>(Switch<TR> s)
+        {
+            return s.Case(this);
+        }
+    }
+    
+    public sealed class One
+    {
+        public readonly T Value;
+        public readonly Stack<T> Next;
+    
+        public override TR Apply<TR>(Switch<TR> s)
+        {
+            return s.Case(this);
+        }
+        
+        public One(T value, Stack<T> next)
+        {
+            this.Value = value;
+            this.Next = next;
+        }
+    }
+    
+    private Stack()
+    {
+    }
+} 
 ``` 
     
