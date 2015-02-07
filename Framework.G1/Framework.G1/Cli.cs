@@ -80,27 +80,6 @@ namespace Framework.G1
                 return Error;
             }
             return Ok;
-        }
-
-        public static void Parse(
-            string parameter, 
-            Action<string, string> parameterAction, 
-            Action<string> multiparameterAction)
-        {
-            if (!parameter.StartsWith('-'))
-            {
-                throw new Exception("unrecognized parameter: " + parameter);
-            }
-            if (!parameter.StartsWith('-', 1))
-            {
-                multiparameterAction(parameter.Substring(1));
-            }
-            else
-            {
-                var nameValue = parameter.Substring(2);
-                var split = nameValue.Split(nameValue.IndexOf('='));
-                parameterAction(split.Before, split.After);
-            }
-        }
+        } 
     }
 }

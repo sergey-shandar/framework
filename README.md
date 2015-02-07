@@ -104,25 +104,64 @@ Principals:
 
 ### Untyped
 
-    JS.Object["name", JS.Array[5][6][7]["string"]]["Date", 5] => { "name": [ 5, 6, 7, "string"], "Date": 5 }
+```C#
+JS.Object["name", JS.Array[5][6][7]["string"]]["Date", 5] => { "name": [ 5, 6, 7, "string"], "Date": 5 }
     
-    JS
-        .Object
-        .p("name", JS.Array.i(5).i(6).i(7).i("string"))
-        .p("Date", 5)
+JS
+    .Object
+    .p("name", JS.Array.i(5).i(6).i(7).i("string"))
+    .p("Date", 5)
     
-    // with implicit type conversion to JS.ValueType    
-    JS
-        .Object
-        .p("name", JS.Array(5, 6, 7, "string"))
-        .p("Date", 5)
+// with implicit type conversion to JS.ValueType    
+JS
+    .Object
+    .p("name", JS.Array(5, 6, 7, "string"))
+    .p("Date", 5)
+```    
     
 # Immutable Containers
 
-## Sequence
+## Stack
 
 ```C#
-Sequence<T> { readonly Optional<Node<T>> next; } 
-Node<T> { readonly T Value; readonly Optional<Node<T>> next; }
+public abstract class Stack<T> 
+{
+    public abstract class Switch<TR>
+    {
+        public abstract TR Case(Empty empty);
+        public abstract TR Case(One one);
+    }
+    
+    public abstract TR Apply<TR>(Switch<TR> s);
+    
+    public sealed class Empty: Stack<T>
+    {
+        public override TR Apply<TR>(Switch<TR> s)
+        {
+            return s.Case(this);
+        }
+    }
+    
+    public sealed class One: Stack<T>
+    {
+        public readonly T Value;
+        public readonly Stack<T> Next;
+    
+        public override TR Apply<TR>(Switch<TR> s)
+        {
+            return s.Case(this);
+        }
+        
+        public One(T value, Stack<T> next)
+        {
+            this.Value = value;
+            this.Next = next;
+        }
+    }
+    
+    private Stack()
+    {
+    }
+} 
 ``` 
     
