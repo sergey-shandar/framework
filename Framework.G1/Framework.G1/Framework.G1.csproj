@@ -136,6 +136,7 @@
     <Compile Include="OptionalCreateExtensions.cs" />
     <Compile Include="OptionalExtensions.SwitchSelect.cs" />
     <Compile Include="Split.cs" />
+    <Compile Include="Stack.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="UpCastExtensions.cs" />
     <Compile Include="ZigZag.cs" />
