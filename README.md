@@ -170,3 +170,16 @@ public abstract class Stack<T>
 } 
 ``` 
     
+```
+- A(null, null)
+    - A < B => B(A, null)
+        - A < B < C => B`(A, C), C(null, null)
+            - A < B < C < D => B`(A, D), D(C, null)
+                - A < B < C < D < E =>
+            - A < B < D < C => B`(A, D), D(null, C)
+            - A < D < B < C => B`(D, C), D(A, null)
+            - D < A < B < C => B`(D, C), D(null, A)
+        - A < C < B => C(A, B`), B`(null, null)
+        - C < A < B => C(null, null), A`(C, B`), B`(null, null)
+    - B < A => B(null, A)
+```
