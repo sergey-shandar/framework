@@ -25,7 +25,7 @@ Principals:
 - Using Immutable Structires
 - Using Optional
 
-
+    ```C#
     static int ApiMain(Options options)
     {
         //
@@ -35,10 +35,11 @@ Principals:
     {
         return CommandLineParser.Run(args, ApiMain);
     }
+    ```
     
 - using commands
 
-
+    ```C#
     sealed class Commands
     {
         int Download(string file, Optional<int> x) { ... }
@@ -49,10 +50,11 @@ Principals:
     {
         return Cli.Run(new Commands(), args);
     }
+    ```
     
 - using static classes
 
-
+    ```C#
     static class Commands
     {
         [Help("Download file.")]
@@ -66,6 +68,9 @@ Principals:
     {
         return Cli.Run<Commands>(args);
     }
+    ```
+    
+See [CLAP](http://adrianaisemberg.github.io/CLAP/)
     
 ### Settings
 
